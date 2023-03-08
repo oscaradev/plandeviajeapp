@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Actividad {{this.actividad.title}}
+  <div *ngIf="this.act2">
+    Fecha {{this.actividad.startDate | date:'shortDate'}}
+  </div>
+</h1>
+<div mat-dialog-content>
+  <p *ngIf="!this.act2">Fecha de Actividad</p>
+  <input *ngIf="!this.act2" class="form-control" type="date" [(ngModel)]="this.actividad.startDate"
+    [min]="this.fechaMin" [max]="this.fechaMax" (change)="asignaDia(this.actividad.startDate)">
+  <br>
+  <p>Hora de inicio: {{this.horaInic.hora | date:'shortTime'}}</p>
+  <select class="form-select" aria-label="Default select example" (change)="controlHoraIni()"
+    [(ngModel)]="this.horaInic">
+    <option *ngFor="let inicio of this.horaInicio; let i=index" [ngValue]="inicio">{{inicio.hora | date:'shortTime'}}
+    </option>
+  </select>
+  <br>
+  <p>Hora de finalización: {{this.horaFin.hora | date:'shortTime'}}</p>
+  <select [disabled]="!this.horaFinal.length" class="form-select" aria-label="Default select example"
+    (change)="controlHoraFin()" [(ngModel)]="this.horaFin">
+    <option *ngFor="let final of this.horaFinal; let i=index" [ngValue]="final">{{final.hora | date:'shortTime'}}
+    </option>
+  </select>
+
+</div>
+<div mat-dialog-actions>
+  <button [disabled]="!act2" mat-button [mat-dialog-close]="this.actividad">Modificar</button>
+</div>

@@ -1,0 +1,98 @@
+<div class="contenedor">
+  <div class="row">
+    <div class="col-md-3 contenedor2">
+    </div>
+
+    <div class="col-md-9">
+      <div style="text-align: right" class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3" *ngIf="!this.verNewActividad"
+          (click)="nuevaActividad()">Nueva actividad</button>
+      </div>
+      <div *ngIf="this.verNewActividad" class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Introduzca el nombre de la actividad"
+          aria-label="Introduzca el nombre de la actividad" aria-describedby="button-addon2"
+          [(ngModel)]="this.newActividad" autofocus>
+        <button *ngIf="this.newActividad!=''" (click)="nuevaActividad2(this.newActividad)" class="btn btn-primary"
+          type="button" id="button-addon2">Enviar actividad</button>
+      </div>
+      <div cdkDropListGroup>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="example-container">
+              <h2>{{this.Fecha2 | date:'d':'es'|titlecase}} de {{this.Fecha2 | date:'MMMM':'es'|titlecase}} <a
+                  style="opacity: 0.3">({{actividades.length}})</a></h2>
+              <div cdkDropList [cdkDropListData]="actividades" class="example-list"
+                (cdkDropListDropped)="drop($event,this.Fecha2)">
+                <div class="example-box" cdkDrag *ngFor="let item of actividades">
+                  {{item.title}}
+                  <small *ngIf="!(this.fechaActual>=item.startDate && this.fechaActual<=item.endDate)"
+                    class="col-md-4">{{item.startDate | date:'shortTime':'es'}} - {{item.endDate |
+                    date:'shortTime':'es'}}</small>
+                  <div *ngIf="this.fechaActual>=item.startDate && this.fechaActual<=item.endDate"
+                    class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <div>
+                    <mat-icon (click)="getActivities(item)" style="opacity: 0.4;font-size:large;">edit</mat-icon>
+                    <mat-icon (click)="eliminarAct(item)" style="opacity: 0.4;font-size:large">delete_outline</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="example-container">
+              <h2>{{this.Fecha3 | date:'d':'es'|titlecase}} de {{this.Fecha3 | date:'MMMM':'es'|titlecase}}<a
+                  style="opacity: 0.3">({{actividades2.length}})</a></h2>
+              <div cdkDropList [cdkDropListData]="actividades2" class="example-list"
+                (cdkDropListDropped)="drop($event,this.Fecha3)">
+                <div class="example-box" *ngFor="let item of actividades2" cdkDrag>{{item.title}}
+                  <small class="col-md-4">{{item.startDate | date:'shortTime':'es'}} {{item.endDate |
+                    date:'shortTime':'es'}}</small>
+                  <div class="box">
+                    <mat-icon (click)="getActivities(item)" style="opacity: 0.4;font-size:large;">edit</mat-icon>
+                    <mat-icon (click)="eliminarAct(item)" style="opacity: 0.4;font-size:large">delete_outline</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="example-container">
+              <h2>{{this.Fecha4 | date:'d':'es'|titlecase}} de {{this.Fecha44 | date:'MMMM':'es'|titlecase}} <a
+                  style="opacity: 0.3">({{actividades3.length}})</a></h2>
+              <div cdkDropList [cdkDropListData]="actividades3" class="example-list"
+                (cdkDropListDropped)="drop($event,this.Fecha4)">
+                <div class="example-box" *ngFor="let item of actividades3" cdkDrag>{{item.title}}
+                  <small class="col-md-4">{{item.startDate | date:'shortTime':'es'}} {{item.endDate |
+                    date:'shortTime':'es'}}</small>
+                  <div class="box">
+                    <mat-icon (click)="getActivities(item)" style="opacity: 0.4;font-size:large;">edit</mat-icon>
+                    <mat-icon (click)="eliminarAct(item)" style="opacity: 0.4;font-size:large">delete_outline</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="example-container">
+              <h2>{{this.Fecha5 | date:'d':'es'|titlecase}} de {{this.Fecha5 | date:'MMMM':'es'|titlecase}}<a
+                  style="opacity: 0.3">({{actividades4.length}})</a></h2>
+              <div cdkDropList [cdkDropListData]="actividades4" class="example-list"
+                (cdkDropListDropped)="drop($event,this.Fecha5)">
+                <div class="example-box" *ngFor="let item of actividades4" cdkDrag>{{item.title}}
+                  <small class="col-md-4">{{item.startDate | date:'shortTime':'es'}} {{item.endDate |
+                    date:'shortTime':'es'}}</small>
+                  <div class="box">
+                    <mat-icon (click)="getActivities(item)" style="opacity: 0.4;font-size:large;">edit</mat-icon>
+                    <mat-icon (click)="eliminarAct(item)" style="opacity: 0.4;font-size:large">delete_outline</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
